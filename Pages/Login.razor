@@ -1,0 +1,48 @@
+﻿@page "/login"
+@using BlazorApp.Data.Authentication
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager navigationManager
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-12 login-form-1">
+            <h3>Login</h3>
+                <EditForm Model="@_user" OnValidSubmit="@ValidateUser">
+                    <div class="form-group">
+                        <input type="text" @bind="_user.Name" class="form-control" placeholder="Benutzername"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" @bind="_user.Password" class="form-control" placeholder="Passwort"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Login"/>
+                    </div>
+                </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private User _user;
+    private CustomAuthenticationStateProvider _authenticationStateProvider;
+
+    protected override Task OnInitializedAsync()
+    {
+        _user = new User();
+        _authenticationStateProvider = (CustomAuthenticationStateProvider) authenticationStateProvider;
+        return base.OnInitializedAsync();
+    }
+
+    private async Task<bool> ValidateUser()
+    {
+        Console.WriteLine("Called");
+        _authenticationStateProvider.MarkUserAsLoggedIn(_user.Name);
+        navigationManager.NavigateTo("/");
+        await sessionStorage.SetItemAsync("currentUserName", _user.Name);
+
+        return await Task.FromResult(true);
+    }
+
+}
