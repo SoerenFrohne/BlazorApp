@@ -1,17 +1,27 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Heebo', sans-serif;
+}
+
+.logofont {
+    font-family: 'Gochi Hand', cursive;
 }
 
 a, .btn-link {
-    color: #0366d6;
+    color: #19315b;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #19315b;
+    border-color: #19315b;
+    min-height: 3rem;
+    border-radius: 4px;
 }
 
 app {
@@ -47,7 +57,7 @@ app {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
 }
 
 .sidebar .top-row {
@@ -55,7 +65,8 @@ app {
 }
 
 .sidebar .navbar-brand {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+    color: #90ba54;
 }
 
 .sidebar .oi {
@@ -136,43 +147,10 @@ app {
     top: 0.5rem;
 }
 
-.login-container{
-    margin-top: 5%;
-    margin-bottom: 5%;
+.login-container {
+    margin-top: 15%;
+    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
 }
-.login-form-1{
-    padding: 5%;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-}
-.login-form-1 h3{
-    text-align: center;
-    color: #333;
-}
-
-.login-container form{
-    padding: 10%;
-}
-.btnSubmit
-{
-    width: 50%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    border: none;
-    cursor: pointer;
-}
-.login-form-1 .btnSubmit{
-    font-weight: 600;
-    color: #fff;
-    background-color: #0062cc;
-}
-
-.login-form-1 .ForgetPwd{
-    color: #0062cc;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-
 
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {

@@ -8,4 +8,11 @@
     <PackageReference Include="Blazored.SessionStorage" Version="1.0.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\img\protokkoli_logo.svg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
