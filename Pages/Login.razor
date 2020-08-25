@@ -1,9 +1,12 @@
 ﻿@layout BlankLayout
 @page "/"
 @using BlazorApp.Data.Authentication
+@using Newtonsoft.Json
+@using System.Net.Http.Headers
 @inject AuthenticationStateProvider authenticationStateProvider
 @inject NavigationManager navigationManager
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject IHttpClientFactory httpClientFactory
 
 <div class="d-flex align-items-center min-vh-100">
     <div class="container">
@@ -49,7 +52,19 @@
 
     private async Task<bool> ValidateUser()
     {
-        Console.WriteLine("Called");
+
+        HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, "uri") {Content = new StringContent(JsonConvert.ToString(_user))};
+        message.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        message.Content = new StringContent(JsonConvert.SerializeObject(_user));
+
+        HttpClient client = httpClientFactory.CreateClient();
+        HttpResponseMessage response = await client.SendAsync(null);
+
+        if (response.IsSuccessStatusCode)
+        {
+            //Todo: Deserialize body and compare 
+        }
+        
         _authenticationStateProvider.MarkUserAsLoggedIn(_user.Name);
         navigationManager.NavigateTo("/home");
         await sessionStorage.SetItemAsync("currentUserName", _user.Name);

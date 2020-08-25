@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.SessionStorage" Version="1.0.12" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
