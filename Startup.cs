@@ -123,6 +123,12 @@ namespace BlazorApp
                 app.UseHsts();
             }
 
+            app.Use((context, next) =>
+            {
+                context.Request.Scheme = "https";
+                return next();
+            });
+
             app.UseForwardedHeaders();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
