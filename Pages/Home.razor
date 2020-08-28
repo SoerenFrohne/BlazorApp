@@ -1,0 +1,12 @@
+﻿@page "/home"
+
+<h1>Herzlich Willkommen</h1>
+
+<AuthorizeView>
+    <Authorized>
+        Du befindest dich im Account: @context.User.Identity.Name
+    </Authorized>
+    <NotAuthorized>
+        Zugang nicht erlaubt
+    </NotAuthorized>
+</AuthorizeView>

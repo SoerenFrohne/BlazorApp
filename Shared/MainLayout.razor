@@ -1,0 +1,32 @@
+﻿@using BlazorApp.Data.Authentication
+@inherits LayoutComponentBase
+@inject AuthenticationStateProvider stateProvider
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="top-row px-4">
+        <AuthorizeView>
+            <Authorized>
+                <a href="/" @onclick="(LogOut)" >Logout</a>
+            </Authorized>
+            <NotAuthorized>
+                <a href="/">Login</a>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+@code
+{
+    private void LogOut()
+    {
+        ((CustomAuthenticationStateProvider) stateProvider).MarkUserAsLoggedOut();
+    }
+}
