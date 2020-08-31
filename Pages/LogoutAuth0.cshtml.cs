@@ -9,7 +9,7 @@ namespace BlazorApp.Pages
     {
         public async Task OnGet()
         {
-            await HttpContext.SignOutAsync("Auth0", new AuthenticationProperties { RedirectUri = "/" });
+            await HttpContext.SignOutAsync("Auth0", new AuthenticationProperties {RedirectUri = "/"});
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
     }

@@ -34,12 +34,6 @@ namespace BlazorApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddBlazoredSessionStorage();
-            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-
-            services.AddHttpClient();
-            services.AddSingleton<HttpClient>();
-            services.AddHttpContextAccessor();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -74,7 +68,7 @@ namespace BlazorApp
 
                     // Set the callback path, so Auth0 will call back to http://localhost:3000/callback
                     // Also ensure that you have added the URL as an Allowed Callback URL in your Auth0 dashboard
-                    options.CallbackPath = new PathString("/home");
+                    options.CallbackPath = new PathString("/callback");
 
                     // Configure the Claims Issuer to be Auth0
                     options.ClaimsIssuer = "Auth0";
@@ -108,6 +102,8 @@ namespace BlazorApp
                         }
                     };
                 });
+
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -123,13 +119,12 @@ namespace BlazorApp
                 app.UseHsts();
             }
 
-            app.UseForwardedHeaders();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
+
 
             app.UseRouting();
-
-            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
 
